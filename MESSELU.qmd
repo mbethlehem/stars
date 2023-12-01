@@ -113,6 +113,6 @@ table <- climate |> count(PLANET_CODE)
 ```
 
 ```{r}
-table |> ggplot(aes(x= PLANET_CODE, y=n)) + geom_col() + 
+table |> ggplot(aes(x= PLANET_CODE, y=n)) + geom_col()
 ```
 
