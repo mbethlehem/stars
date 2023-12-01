@@ -109,10 +109,11 @@ climate <- planets |> reframe(ter = unlist(str_split(`Type Of Terrain`, ":")), .
 Represent graphically the distribution of the number of different climates per planet. Provide acsimilar representation for the terrain types.
 
 ```{r}
-table <- climate |> count(PLANET_CODE)
+table <- climate |> group_by(PLANET_CODE) |> summarise(n= n())
+table <- table |> group_by(n) |> summarise(N= n())
 ```
 
 ```{r}
-table |> ggplot(aes(x= PLANET_CODE, y=n)) + geom_col()
+table |>  ggplot(aes(x= n, y=N)) + geom_col()
 ```
 
