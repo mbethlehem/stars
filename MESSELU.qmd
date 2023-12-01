@@ -1,5 +1,6 @@
 ---
 title: "MESSELU"
+author: "Bethlehem MESSELU"
 format: html
 ---
 
@@ -12,3 +13,5 @@ library(tidyr)
 library(ggplot2)
 library(knitr)
 ```
+
+[Here](https://github.com/mbethlehem/stars.git) is the link to my Github repository.
