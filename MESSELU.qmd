@@ -63,11 +63,17 @@ planets |> pull(`Radius (Earth)`) |> is.numeric()
 
 ## Question 4
 
-| Description                                    | Values                                                                  |
-|------------------------------------------------|-------------------------------------------------------------------------|
-| Number of Planets                              | `r planets |> nrow()`                                                   |
-| Number of variables                            | `r planets |> ncol()`                                                   |
-| Number of variables with missing vaalues       | `r planets |> select(where(anyNA)) |> is.na() |> ncol()`                |
-| Number of missing values in `RELATIVE MASS`    | `` `r (planets |> select(where(anyNA)) |> is.na() |>  colSums())[1]` `` |
-| Number of missing values in \`Radius (Earth)\` | `r (planets |> select(where(anyNA)) |> is.na() |>  colSums())[2]`       |
-|                                                |                                                                         |
+| Description                                            | Values                                                                                                                                     |
+|------------------------------------|------------------------------------|
+| Number of Planets                                      | `r planets |> nrow()`                                                                                                                      |
+| Number of variables                                    | `r planets |> ncol()`                                                                                                                      |
+| Number of variables with missing vaalues               | `r planets |> select(where(anyNA)) |> is.na() |> ncol()`                                                                                   |
+| Number of missing values in `RELATIVE MASS`            | `` `r (planets |> select(where(anyNA)) |> is.na() |>  colSums())[1]` ``                                                                    |
+| Number of missing values in \`Radius (Earth)\`         | `r (planets |> select(where(anyNA)) |> is.na() |>  colSums())[2]`                                                                          |
+| Number of observations with at least one missing value | `planets |> mutate(across(everything(), is.na)) |> rowwise() |> summarise(na_var = any(c_across(everything()))) |> summarise(sum(na_var))` |
+
+##Question 5
+
+```{r}
+planets |> filter(!is.na(`RELATIVE MASS`)) |> filter(!is.na(`Radius (Earth)`)) |> ggplot(aes(x=`Radius (Earth)`, y=`RELATIVE MASS`)) + geom_point()
+```
