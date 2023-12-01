@@ -12,6 +12,7 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(knitr)
+library(stringr)
 ```
 
 [Here](https://github.com/mbethlehem/stars.git) is the link to my Github repository.
@@ -77,3 +78,29 @@ planets |> pull(`Radius (Earth)`) |> is.numeric()
 ```{r}
 planets |> filter(!is.na(`RELATIVE MASS`)) |> filter(!is.na(`Radius (Earth)`)) |> ggplot(aes(x=`Radius (Earth)`, y=`RELATIVE MASS`)) + geom_point()
 ```
+
+## Question 6
+
+Report in a table the most extreme planets with respect to the numerical variables. This should include, for instance, the densest and least dense planets.
+
+```{r}
+planets |> slice_max(order_by = STAR_KEY)
+planets |> slice_min(order_by = STAR_KEY)
+
+planets |> slice_max(order_by = `RELATIVE MASS`)
+planets |> slice_min(order_by = `RELATIVE MASS`)
+
+planets |> slice_max(order_by = Density)
+planets |> slice_min(order_by = Density)
+
+planets |> slice_max(order_by = `Radius (Earth)`)
+planets |> slice_min(order_by = `Radius (Earth)`)
+
+```
+
+## Question 7
+
+```{r}
+planets |> reframe(ter = unlist(str_split(`Type Of Terrain`, ":")), by="PLANET_CODE") |> unnest(ter)
+```
+
