@@ -1,0 +1,14 @@
+---
+title: "MESSELU"
+format: html
+---
+
+```{r, message=FALSE, warning=FALSE}
+here::i_am("stars.Rproj")
+library(here)
+library(vroom)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(knitr)
+```
