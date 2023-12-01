@@ -15,3 +15,22 @@ library(knitr)
 ```
 
 [Here](https://github.com/mbethlehem/stars.git) is the link to my Github repository.
+
+```{r}
+planets <- vroom(here("data", "planets.csv"), 
+                          locale=locale(decimal_mark = ","))
+```
+
+The planets dataset contains `r planets |> nrow()` planets and cointains `r planets |> ncol()`, which coincides with the description of the datasets. 
+
+```{r echo=FALSE}
+valeur <- all(c(planets |> nrow(), planets |> ncol()) == c(851, 8))
+```
+```{r}
+if(valeur){ 
+  print("The planets dataset contains 851 planets and cointains 8, which coincides with the description of the dataset.")
+}
+if(!valeur){
+  print("The planets dataset dimension does not coincide with the description of the dataset.")
+} 
+```
