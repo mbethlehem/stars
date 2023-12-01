@@ -21,19 +21,21 @@ planets <- vroom(here("data", "planets.csv"),
                           locale=locale(decimal_mark = ","))
 ```
 
-The planets dataset contains `r planets |> nrow()` planets and cointains `r planets |> ncol()`, which coincides with the description of the datasets. 
+The planets dataset contains `r planets |> nrow()` planets and cointains `r planets |> ncol()` variables, which coincides with the description of the datasets.
 
 ```{r echo=FALSE}
 valeur <- all(c(planets |> nrow(), planets |> ncol()) == c(851, 8))
 ```
+
 ```{r}
 if(valeur){ 
-  print("The planets dataset contains 851 planets and cointains 8, which coincides with the description of the dataset.")
+  print("The planets dataset contains 851 planets and cointains 8 variables, which coincides with the description of the dataset.")
 }
 if(!valeur){
   print("The planets dataset dimension does not coincide with the description of the dataset.")
 } 
 ```
+
 The numerical variables are "PLANET_CODE", "STAR_KEY", "RELATIVE MASS", "Density" and "Radius (Earth)". We will check if there all are numerical.
 
 ```{r}
@@ -59,3 +61,13 @@ planets |> pull(`Radius (Earth)`) |> is.numeric()
 
 ```
 
+## Question 4
+
+| Description                                    | Values                                                                  |
+|------------------------------------------------|-------------------------------------------------------------------------|
+| Number of Planets                              | `r planets |> nrow()`                                                   |
+| Number of variables                            | `r planets |> ncol()`                                                   |
+| Number of variables with missing vaalues       | `r planets |> select(where(anyNA)) |> is.na() |> ncol()`                |
+| Number of missing values in `RELATIVE MASS`    | `` `r (planets |> select(where(anyNA)) |> is.na() |>  colSums())[1]` `` |
+| Number of missing values in \`Radius (Earth)\` | `r (planets |> select(where(anyNA)) |> is.na() |>  colSums())[2]`       |
+|                                                |                                                                         |
