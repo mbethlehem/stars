@@ -101,6 +101,18 @@ planets |> slice_min(order_by = `Radius (Earth)`)
 ## Question 7
 
 ```{r}
-planets |> reframe(ter = unlist(str_split(`Type Of Terrain`, ":")), by="PLANET_CODE") |> unnest(ter)
+climate <- planets |> reframe(ter = unlist(str_split(`Type Of Terrain`, ":")), .by=PLANET_CODE) |> unnest(ter)
+```
+
+## Question 8
+
+Represent graphically the distribution of the number of different climates per planet. Provide acsimilar representation for the terrain types.
+
+```{r}
+table <- climate |> count(PLANET_CODE)
+```
+
+```{r}
+table |> ggplot(aes(x= PLANET_CODE, y=n)) + geom_col() + 
 ```
 
