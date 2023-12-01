@@ -34,3 +34,28 @@ if(!valeur){
   print("The planets dataset dimension does not coincide with the description of the dataset.")
 } 
 ```
+The numerical variables are "PLANET_CODE", "STAR_KEY", "RELATIVE MASS", "Density" and "Radius (Earth)". We will check if there all are numerical.
+
+```{r}
+## Does PLANET_CODE take numerical value ?
+
+planets |> pull(PLANET_CODE) |> is.numeric()
+
+## Does STAR_KEY take numerical value ?
+
+planets |> pull(STAR_KEY) |> is.numeric()
+
+## Does RELATIVE MASS take numerical value ?
+
+planets |> pull(`RELATIVE MASS`) |> is.numeric()
+
+## Does Density take numerical value ?
+
+planets |> pull(Density) |> is.numeric()
+
+## Does Radius (Earth) take numerical value ?
+
+planets |> pull(`Radius (Earth)`) |> is.numeric()
+
+```
+
